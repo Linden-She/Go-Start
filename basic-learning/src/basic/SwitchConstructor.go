@@ -13,5 +13,3 @@ func main() {
 	}
 	println(res)
 }
-
-

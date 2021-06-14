@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	var a,b,c chan int
+	var a, b, c chan int
 	select {
 	case a <- 90:
 		println(a)
