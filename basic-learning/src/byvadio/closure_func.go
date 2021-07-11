@@ -8,24 +8,27 @@ package main
 import "fmt"
 
 func main() {
-	res := increment()
-	fmt.Errorf("%T\n", res)
+	addr, res := increment()
+	fmt.Println("函数外部变量i地址", addr)
+	fmt.Printf("%T\n", res)
 	fmt.Println(res)
 	i := res()
 	fmt.Println("函数外部变量i：", &i)
 
-	res2 := increment()
+	_, res2 := increment()
 	i2 := res2()
 	fmt.Println(i2)
 }
 
-func increment() func() int {
+func increment() (*int, func() int) {
 	i := 1
+	addr := &i
+	fmt.Printf("%T\n", addr)
 	fmt.Println("函数内部变量i：", &i)
 	res := func() int {
 		i++
 		fmt.Println("函数内内部变量i：", &i)
 		return i
 	}
-	return res
+	return addr, res
 }
